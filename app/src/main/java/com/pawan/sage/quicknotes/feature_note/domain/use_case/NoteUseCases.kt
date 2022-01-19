@@ -4,5 +4,6 @@ package com.pawan.sage.quicknotes.feature_note.domain.use_case
 data class NoteUseCases(
     val getNotes: GetNotesUseCase,
     val deleteNotes: DeleteNoteUseCase,
-    val addRestoreNote: AddRestoreNote
+    val addRestoreNote: AddRestoreNote,
+    val getNote: GetNoteByIDUseCase
 )

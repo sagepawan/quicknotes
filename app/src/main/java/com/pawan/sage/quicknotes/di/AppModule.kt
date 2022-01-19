@@ -5,9 +5,7 @@ import androidx.room.Room
 import com.pawan.sage.quicknotes.feature_note.data.data_source.NoteDatabase
 import com.pawan.sage.quicknotes.feature_note.data.repository.NoteRepositoryImplementation
 import com.pawan.sage.quicknotes.feature_note.domain.repository.NoteRepository
-import com.pawan.sage.quicknotes.feature_note.domain.use_case.DeleteNoteUseCase
-import com.pawan.sage.quicknotes.feature_note.domain.use_case.GetNotesUseCase
-import com.pawan.sage.quicknotes.feature_note.domain.use_case.NoteUseCases
+import com.pawan.sage.quicknotes.feature_note.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,7 +40,9 @@ object AppModule {
     fun providesNotesUseCases(repository: NoteRepository): NoteUseCases {
         return NoteUseCases(
             getNotes = GetNotesUseCase(repository),
-            deleteNotes = DeleteNoteUseCase(repository)
+            deleteNotes = DeleteNoteUseCase(repository),
+            addRestoreNote = AddRestoreNote(repository),
+            getNote = GetNoteByIDUseCase(repository)
         )
     }
 }
