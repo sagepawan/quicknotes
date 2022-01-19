@@ -97,7 +97,7 @@ fun NoteScreen (
                         },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
-                            //snackbar requires coroutine
+                            //snack bar requires coroutine
                             scope.launch {
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
                                     message = "Note Deleted",
