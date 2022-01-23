@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pawan.sage.quicknotes.presentation.notes.components.NoteItem
 import com.pawan.sage.quicknotes.presentation.notes.components.OrderSection
+import com.pawan.sage.quicknotes.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @ExperimentalAnimationApi
@@ -92,9 +93,14 @@ fun NoteScreen (
                 items(state.notes){ note ->
                     NoteItem(
                         note = note,
-                        modifier = Modifier.fillMaxWidth().clickable {
-
-                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                       navController.navigate(
+                                           Screen.AddEditNoteScreen.route +
+                                                   "?noteId=${note.id}&noteColor=${note.color}"
+                                       )
+                            },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             //snack bar requires coroutine
